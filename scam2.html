@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will you be my Valentine? 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd4e8 100%);
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .particle {
+            position: absolute;
+            font-size: 24px;
+            animation: float linear infinite;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #d63384;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: #ff6b9d;
+            margin-bottom: 30px;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .negotiation-message {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff5f9 0%, #ffe8f3 100%);
+            border-radius: 20px;
+            border: 2px solid #ffdbeb;
+            position: relative;
+            z-index: 10;
+        }
+
+        .buttons-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            justify-items: center;
+            position: relative;
+            min-height: 200px;
+            margin-top: 20px;
+        }
+
+        .yes-button-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .no-button-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        button {
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 18px 40px;
+            pointer-events: auto;
+        }
+
+        button:active {
+            transform: scale(0.95) !important;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
+            transform-origin: center;
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.3s ease;
+        }
+
+        #yesBtn:hover {
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.6);
+        }
+
+        #noBtn {
+            background: white;
+            color: #ff6b9d;
+            border: 3px solid #ff6b9d;
+            box-shadow: 0 4px 15px rgba(255, 107, 157, 0.2);
+            transition: all 0.3s ease;
+            position: absolute;
+            z-index: 2;
+        }
+
+        #noBtn:hover {
+            background: #fff5f9;
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .celebration {
+            display: none;
+            text-align: center;
+        }
+
+        .celebration h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #d63384;
+            margin-bottom: 30px;
+            animation: bounceIn 0.8s ease;
+        }
+
+        .celebration-gif {
+            width: 300px;
+            max-width: 100%;
+            border-radius: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .negotiation-message {
+                font-size: 1rem;
+                min-height: 50px;
+            }
+
+            button {
+                font-size: 1rem;
+                padding: 15px 30px;
+            }
+
+            .celebration h2 {
+                font-size: 1.5rem;
+            }
+
+            .celebration-gif {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .negotiation-message {
+                font-size: 0.95rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 12px 25px;
+            }
+
+            .buttons-container {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="proposalContent">
+            <h1>Will you be my Valentine, Abhibyakti?</h1>
+            <p class="subtitle">(Hint: Try clicking "No" if you're curious what I'm willing to offer... 😏)</p>
+            <div class="negotiation-message" id="negotiationMessage">
+                So... what do you say? 💝
+            </div>
+            <div class="buttons-container">
+                <div class="yes-button-wrapper">
+                    <button id="yesBtn">Yes! 💕</button>
+                </div>
+                <div class="no-button-wrapper">
+                    <button id="noBtn">No</button>
+                </div>
+            </div>
+        </div>
+        <div class="celebration" id="celebration">
+            <h2>Yay! I knew you'd say yes! ❤️<br>Can't wait for our chocolate and ice cream dates!</h2>
+            <img src="https://media.giphy.com/media/artj92V8o75VPL7AeQ/giphy.gif" alt="Celebration" class="celebration-gif">
+        </div>
+    </div>
+
+    <script>
+        // Negotiables array
+        const negotiables = [
+            'What if I treat you to your favorite chocolate? 🍫',
+            'I\'ll buy you that massive tub of ice cream you love. 🍦',
+            'Unlimited supply of your favorite snacks for a week? 🥨',
+            'I\'ll cook your favorite meal from scratch (and do the dishes)! 🍝',
+            'A coffee date at that place you\'ve been wanting to visit? ☕',
+            'I\'ll do your chores/assignments for the next three days? 📝',
+            'I\'ll give you my favorite hoodie to keep. 🧥',
+            'I\'ll let you win the next three arguments... even if I\'m right. 😤',
+            'Okay, what if I say "pretty please" with a cherry on top? 🍒',
+            'Look at this huge YES button... it\'s practically begging you! 🥺',
+            'I\'m not stopping until you click that giant Yes! 🛑'
+        ];
+
+        let currentNegotiableIndex = 0;
+        let noClickCount = 0;
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const negotiationMessage = document.getElementById('negotiationMessage');
+        const proposalContent = document.getElementById('proposalContent');
+        const celebration = document.getElementById('celebration');
+
+        // Function to move No button to random position
+        function moveNoButton() {
+            const container = document.querySelector('.no-button-wrapper');
+            
+            // Random positions within the container - avoiding center
+            const positions = [
+                { top: '10px', left: '10px' },
+                { top: '10px', right: '10px' },
+                { top: '50%', left: '10px', transform: 'translateY(-50%)' },
+                { top: '50%', right: '10px', transform: 'translateY(-50%)' },
+                { bottom: '10px', left: '10px' },
+                { bottom: '10px', right: '10px' },
+                { top: '30%', left: '20%', transform: 'translate(0, 0)' },
+                { top: '30%', right: '20%', transform: 'translate(0, 0)' },
+                { bottom: '30%', left: '15%', transform: 'translate(0, 0)' },
+                { bottom: '30%', right: '15%', transform: 'translate(0, 0)' }
+            ];
+            
+            const randomPos = positions[Math.floor(Math.random() * positions.length)];
+            
+            // Apply new position
+            Object.keys(randomPos).forEach(key => {
+                noBtn.style[key] = randomPos[key];
+                // Reset opposite properties
+                if (key === 'left') noBtn.style.right = 'auto';
+                if (key === 'right') noBtn.style.left = 'auto';
+                if (key === 'top') noBtn.style.bottom = 'auto';
+                if (key === 'bottom') noBtn.style.top = 'auto';
+            });
+        }
+
+        // Initialize No button position
+        moveNoButton();
+
+        // No button click handler
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Update message to next negotiable
+            negotiationMessage.textContent = negotiables[currentNegotiableIndex];
+            
+            // Move to next negotiable, but stop at the last one
+            if (currentNegotiableIndex < negotiables.length - 1) {
+                currentNegotiableIndex++;
+            }
+            // If already at last negotiable, keep showing it (don't increment)
+            
+            // Increase Yes button size
+            noClickCount++;
+            const newScale = 1 + (noClickCount * 0.3);
+            yesBtn.style.transform = `scale(${newScale})`;
+            
+            // Move No button to new position
+            moveNoButton();
+        });
+
+        // Yes button click handler
+        yesBtn.addEventListener('click', function() {
+            proposalContent.style.display = 'none';
+            celebration.style.display = 'block';
+            
+            // Trigger confetti or celebration effect
+            createCelebrationHearts();
+        });
+
+        // Create floating heart particles
+        function createParticles() {
+            const particles = ['💕', '💖', '💗', '💝', '💓', '❤️', '🌹'];
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                particle.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 13000);
+            }, 800);
+        }
+
+        // Create celebration hearts when Yes is clicked
+        function createCelebrationHearts() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.textContent = ['💕', '💖', '💗', '🎉', '✨'][Math.floor(Math.random() * 5)];
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    document.body.appendChild(particle);
+
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 6000);
+                }, i * 100);
+            }
+        }
+
+        // Start particle effect on load
+        createParticles();
+    </script>
+</body>
+</html>
